@@ -61,7 +61,7 @@ stream.prototype._final = () => {
 function sync(cb) {
   const jsendStream = new stream();
   console.log(moment().format("YYYY-MM-DD HH:mm:ss") + " - Sync Started.");
-  fsr("./log.log").pipe(jsendStream);
+  fsr("./nginx.log").pipe(jsendStream);
 }
 
 var CronJob = require("cron").CronJob;
