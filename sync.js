@@ -58,7 +58,11 @@ stream.prototype._write = function (chunk, enc, next) {
       }
     });
   } catch (err) {
+    console.log("==========================");
     console.log(err.message, err.stack);
+    console.log();
+    console.log(chunkStr);
+    console.log("==========================");
     next();
   }
 };
