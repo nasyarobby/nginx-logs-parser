@@ -26,14 +26,23 @@ stream.prototype._write = function (chunk, enc, next) {
     const hash = chunkStr.hashCode();
     const id = uuidv4();
     const data = {
-      ...json,
       id,
       hash,
+      remoteAddr: json.remoteAddr,
+      remoteUser: json.remoteUser,
       timeStr: json.time,
       time: moment(json.time, "DD/MMM/YYYY:HH:mm:ss Z").format(
         "YYYY-MM-DD HH:mm:ss"
       ),
+      request: json.request,
+      status: json.status,
+      httpReferer: json.httpReferer,
+      httpXForwardedFor: json.httpXForwardedFor,
+      client: json.client,
+      clientUsername: json.clientUsername,
+      requestBody: json.requestBody,
     };
+
     Log.findOrCreate({
       where: { hash, timeStr: json.time },
       defaults: data,
