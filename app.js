@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const fsr = require("fs-reverse");
 const jsend = require("./jsend");
+const sync = require("./sync");
 
 var app = express();
 
@@ -120,3 +121,13 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+var CronJob = require("cron").CronJob;
+var job = new CronJob(
+  process.env.CRON_SYNC || "* */10 5-22 * * *",
+  sync,
+  null,
+  true,
+  "Asia/Jakarta"
+);
+job.start();

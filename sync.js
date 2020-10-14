@@ -58,12 +58,8 @@ stream.prototype._final = () => {
   console.log(moment().format("YYYY-MM-DD HH:mm:ss") + " - Sync Finished.");
 };
 
-function sync(cb) {
+module.exports = function sync(cb) {
   const jsendStream = new stream();
   console.log(moment().format("YYYY-MM-DD HH:mm:ss") + " - Sync Started.");
   fsr("./nginx.log").pipe(jsendStream);
-}
-
-var CronJob = require("cron").CronJob;
-var job = new CronJob("* */10 5-22 * * *", sync, null, true, "Asia/Jakarta");
-job.start();
+};
