@@ -21,6 +21,7 @@ Object.defineProperty(String.prototype, "hashCode", {
 const stream = require("stream").Writable;
 stream.prototype._write = function (chunk, enc, next) {
   const chunkStr = chunk.toString();
+  if (!chunkStr.trim()) return next();
   try {
     const json = JSON.parse(chunkStr);
     const hash = chunkStr.hashCode();
