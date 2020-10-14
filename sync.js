@@ -20,8 +20,8 @@ Object.defineProperty(String.prototype, "hashCode", {
 
 const stream = require("stream").Writable;
 stream.prototype._write = function (chunk, enc, next) {
+  const chunkStr = chunk.toString();
   try {
-    const chunkStr = chunk.toString();
     const json = JSON.parse(chunkStr);
     const hash = chunkStr.hashCode();
     const id = uuidv4();
