@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Log",
       tableName: "logs",
       defaultScope: {
-        order: [["time", "ASC"]],
+        order: [["time", "DESC"]],
       },
     }
   );
